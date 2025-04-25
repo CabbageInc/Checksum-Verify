@@ -16,7 +16,9 @@ void hex_to_ascii(const char *hex_input, char *output, int max_output_len){
         token = strtok(NULL, ":");
     }
 
-    output[max_output_len-1] = '\0'; 
+    for(int i = index; i<max_output_len; i++){
+        output[i] = '\0';
+    }
 }
 
 void prepare_string(const char *input, char *output, int input_type, int max_output_len){
@@ -55,10 +57,6 @@ int main(){
     printf("\n");
 
     prepare_string(raw_input, gen_check, input, sizeof(gen_check));
-
-    //debug
-    printf("source_check: %s ", source_check);
-    printf("gen_check: %s\n", gen_check);
 
     //verify
     if(strcmp(source_check, gen_check) == 0){
