@@ -1,8 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 # define MAX_LEN 300
+
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower((unsigned char)str[i]);
+    }
+}
 
 void hex_to_ascii(const char *hex_input, char *output, int max_output_len){
     char buffer[MAX_LEN];
@@ -43,6 +50,7 @@ int main(){
 
     printf("Enter the source checksum: ");
     scanf(" %s", raw_input);
+    to_lowercase(raw_input);
     printf("\n");
 
     prepare_string(raw_input, source_check, input, sizeof(source_check));
@@ -54,6 +62,7 @@ int main(){
     
     printf("Enter the generated checksum: ");
     scanf(" %s", raw_input);
+    to_lowercase(raw_input);
     printf("\n");
 
     prepare_string(raw_input, gen_check, input, sizeof(gen_check));
